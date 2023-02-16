@@ -1,20 +1,16 @@
 import test from './test.js'
 import './style.css';
 import jpFood1 from './japFood1.png';
+import createElementsDom from './domCreation.js';
+
 
 function component() {
         
-        
-    // const testDiv = document.querySelector('.content');
-
     const element = document.createElement('div');
 
-    // const btn = document.createElement('button');
     
-    // btn.innerHTML = 'click me';
     element.classList.add('nasheTest');
 
-    // btn.onclick = test;
 
     const jpFood = new Image();
 
@@ -25,5 +21,34 @@ function component() {
     return element;
 }
 
-document.body.appendChild(component());
+
+const body = document.querySelector('body');
+
+const arrElementsHome = [
+
+    
+    {
+        elementType: 'div',
+        attributes: {class:'content'},
+        appendChild: 'body',
+    },
+
+    {
+        elementType: 'div',
+        attributes: {class:'containerImg'},
+        appendChild: '.content',
+    },
+
+
+];
+
+function domElementsHome(arr) {
+    arr.forEach(elementObject => {
+        
+        createElementsDom(elementObject.elementType,elementObject.attributes,null,elementObject.innerText,document.querySelector(elementObject.appendChild));
+        
+    });
+}
+
+domElementsHome(arrElementsHome);
 
