@@ -28,7 +28,7 @@ body{
 .content{
 
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     display: grid;
 
     grid-template-columns: 30% 70%;
@@ -47,7 +47,7 @@ body{
     flex-direction: column;
 
     align-items: center;
-
+    justify-content: center;
     gap: 70px;
 
     padding: 0 0 0 30px;
@@ -57,6 +57,7 @@ body{
 
     font-size:5rem;
 }
+
 
 .textPresentation{
     user-select: none;
@@ -73,14 +74,91 @@ body{
 
 .containerFloatMenu{
 
-    padding: 30px 0 0 0;
-
+    position: absolute;
+    width: 440px;
+    top: 30px;
+    right: 0;
+    left: 0;
+    margin: auto;
     display: flex;
 
     justify-content: center;
     align-items: center;
 
     gap: 30px;
+
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+
+    /* box-shadow:  0 0 15px #DBAF57; */
+
+    outline: 2px solid #dbaf57;
+
+    padding: 10px;
+
+}
+
+.containerFloatMenu > p:nth-child(1){
+
+    cursor: pointer;
+
+    padding: 10px 16px;
+    border-radius: 16px;
+    transition: all .12s ease-in-out;
+
+    outline-width: 0px;
+
+    
+}
+.containerFloatMenu:nth-child(2){
+
+    cursor: pointer;
+    
+}
+
+.containerNameRestaurant > p:nth-child(2){
+
+    transition: all .12s ease-in-out;
+
+}
+
+.containerNameRestaurant:hover > p:nth-child(2){
+
+    filter: brightness(1.5);
+}
+.containerFloatMenu > p:nth-child(3){
+
+    cursor: pointer;
+
+    padding: 10px 16px ;
+    border-radius: 16px;
+    transition: all .13s ease-in-out;
+
+    /* outline: 2px transparent #DBAF57; */
+    
+}
+
+.containerFloatMenu > p:nth-child(1):hover{
+
+    /* background-color: #0E0605; */
+    background-color: #dbaf57;
+    color: #0E0605;
+
+    /* color: #dbaf57; */
+    /* outline: 2px solid #DBAF57; */
+    
+}
+
+.containerFloatMenu > p:nth-child(3):hover{
+
+    /* background-color: #0E0605; */
+    background-color: #dbaf57;
+    color: #0E0605;
+    /* color: #dbaf57; */
+
+    /* outline: 2px solid #DBAF57; */
+
+    
 }
 
 .containerNameRestaurant{
@@ -89,6 +167,7 @@ body{
     flex-direction: column;
     align-items: center;
     font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .textFloatMenu{
@@ -168,4 +247,32 @@ p{
     100%{
         filter: brightness(1.4);    
     }
+}
+
+/* MENU------------------------------------------------------------------------------- */
+
+.containerItemsMenu{
+    
+    width: 100vw;
+
+    display: grid;
+    
+    /* grid-template-columns: repeat(auto-fit, minmax(400px,max-content)); */
+    grid-template-columns: repeat(3,400px);
+    grid-template-rows: repeat(2, 300px);
+
+    /* justify-content: center; */
+    place-content: center;
+
+    gap: 30px;
+}
+
+.itemMenu{
+
+    border-radius: 16px;
+
+    border-style: solid;
+    border-color: #EFC279;
+    border-width: 4px;
+
 }
