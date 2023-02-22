@@ -38,6 +38,7 @@ body{
 .containerImg{
     height: 100vh;
     background-image: url(./japFood1.png);
+    opacity: 0;
 
 }
 
@@ -51,6 +52,8 @@ body{
     gap: 70px;
 
     padding: 0 0 0 30px;
+
+    opacity: 0;
 }
 
 .containerTitlePresentation > p:nth-child(2){
@@ -63,7 +66,7 @@ body{
     user-select: none;
     color: #5F4A30;
 
-    transition: all .12s ease-in-out;
+    transition: all .2s ease-in-out;
 
 }
 
@@ -140,25 +143,18 @@ body{
 
 .containerFloatMenu > p:nth-child(1):hover{
 
-    /* background-color: #0E0605; */
+    transform: scale(1.05);
     background-color: #dbaf57;
     color: #0E0605;
 
-    /* color: #dbaf57; */
-    /* outline: 2px solid #DBAF57; */
-    
 }
 
 .containerFloatMenu > p:nth-child(3):hover{
 
-    /* background-color: #0E0605; */
+    transform: scale(1.05);
     background-color: #dbaf57;
     color: #0E0605;
-    /* color: #dbaf57; */
-
-    /* outline: 2px solid #DBAF57; */
-
-    
+ 
 }
 
 .containerNameRestaurant{
@@ -220,7 +216,7 @@ p{
 
 
 .btnMenu:hover{
-
+    transform: scale(1.05);
     filter: brightness(1.5);
 
 }
@@ -246,6 +242,23 @@ p{
 
     100%{
         filter: brightness(1.4);    
+    }
+}
+
+.blur-out-contract{animation:blur-out-contract .3s linear both} 
+
+@keyframes blur-out-contract{
+    0%{
+        position: absolute;
+        transform:scale(1);
+        filter:blur(.01px);
+        
+    }
+    100%{
+        position: absolute;
+        transform:scale(0);
+        filter:blur(12px);
+        opacity:0
     }
 }
 
@@ -275,4 +288,164 @@ p{
     border-color: #EFC279;
     border-width: 4px;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    /* transition: all .2s ease-in-out; */
+
+    cursor: pointer;
+
+    /* opacity: 0; */
+}
+
+.containerNameItem{
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    backdrop-filter: blur(10px);
+
+    color: #fff;
+
+    /* border-radius: 0 0 16px 16px; */
+    border-radius: 10px;
+    user-select: none;
+}
+
+.item1{
+
+    background: url(./sushiNew.png);
+    background-size: cover;
+    background-position: center;
+}
+.item2{
+
+    background: url(./ramen.png);
+    background-size: cover;
+    background-position: center;
+}
+.item3{
+
+    background: url(./udon.png);
+    background-size: cover;
+    background-position: center;
+}
+.item4{
+
+    background: url(./yakitori.png);
+    background-size: cover;
+    background-position: center;
+}
+.item5{
+
+    background: url(./tempuraNew.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.item6{
+
+    background: url(./okonomiya.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.itemMenu:hover{
+
+    transform: scale(0.95);
+
+}
+
+.blur-out{
+    animation:blur-out .3s linear both;
+} 
+
+@keyframes blur-out{
+    0%{
+        filter:blur(0px);
+        opacity:1
+    }
+    100%{
+            filter:blur(12px);
+            opacity:0
+    }
+}
+
+
+/* CONTACT------------------------------------------------------------------------------- */
+
+.containerItemsContact{
+
+    background: url('./tree.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    
+
+}
+
+.itemsContact{
+
+    width: 500px;
+    height: 300px;
+
+    border-radius: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+    backdrop-filter: blur(10px);
+
+    border: solid 4px #A66918;
+}
+
+.containerInfoContact{
+
+    display: flex;
+    gap: 30px;
+
+}
+
+.containerInfoAddress{
+    display: flex;
+
+    gap: 30px;
+}
+
+.pInfoAddress{
+    margin: auto;
+    font-size: 1.1rem;
+}
+
+.pInfoContact{
+    margin: auto;
+    font-size: 1.1rem;
+
+}
+
+.titleContact{
+    position: absolute;
+
+    top: 30px;
+    font-size: 1.5rem;
+}
+
+.titleAddress{
+    position: absolute;
+
+    top: 30px;
+    font-size: 1.5rem;
 }
