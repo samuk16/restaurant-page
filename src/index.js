@@ -1,32 +1,11 @@
 import './style.css';
-import jpFood1 from './japFood1.png';
 import createElementsDom from './domCreation.js';
+import anime from 'animejs/lib/anime.es.js';
 
 import { createElementsDomMenu, arrElementsMenu } from './menu.js';
 import { createElementsDomContact, arrElementsContact } from './contact';
 
-import anime from 'animejs/lib/anime.es.js';
 
-
-function component() {
-        
-    const element = document.createElement('div');
-
-    
-    element.classList.add('nasheTest');
-
-
-    const jpFood = new Image();
-
-    jpFood.src = jpFood1;
-
-    element.appendChild(jpFood);
-
-    return element;
-}
-
-
-const body = document.querySelector('body');
 
 const arrElementsHome = [
 
@@ -219,62 +198,100 @@ function changeSection() {
     const contact = document.querySelector('.contact');
     const home = document.querySelector('.containerNameRestaurant');    
     
+
    
     menu.addEventListener('click', () => {
+        
+        if (arrSection[0] == 'home') {
 
+            delContentHome()
+
+            
+        }else if(arrSection[0] == 'contact'){
+            
+            animationOutContact();
+            setTimeout(() => {
+                delContentContact();
+            },200)
+
+
+        }
         
 
-        arrSection[0] == 'home' ? delContentHome(): delContentContact();
-        // delContentHome();
-
-        arrSection.pop()
-        arrSection.push('menu');
         
-
         setTimeout(() => {
             
             createElementsDomMenu(arrElementsMenu);
-            animationEntry();
+            animationEntryMenu();
 
         },250)
+
+        arrSection.pop()
+        arrSection.push('menu');
 
     })
 
     contact.addEventListener('click', () => {
 
+        if (arrSection[0] == 'menu') {
 
-        arrSection[0] == 'home' ? delContentHome(): delContentMenu();
-
-        arrSection.pop()
-        arrSection.push('contact');
-
-        setTimeout(() => {
             
-            createElementsDomContact(arrElementsContact);
+            animationOutMenu();
 
-        },200)
-    })
+            setTimeout(() => {
+                delContentMenu()
+            },200)
 
-    home.addEventListener('click', () => {
+        }else if(arrSection[0] == 'home'){
+      
+            delContentHome()
+            
+        }
+        
 
-        arrSection[0] == 'menu' ? delContentMenu(): delContentContact();
-
-        arrSection.pop()
-        arrSection.push('menu');
-
-        animationOut();
+        
         
         setTimeout(() => {
             
-            delContentMenu();
-
+            createElementsDomContact(arrElementsContact);
+            animationEntryContact();
         },200)
 
+        arrSection.pop()
+        arrSection.push('contact');
+        
+    })
+
+    home.addEventListener('click', () => {
+        
+        if (arrSection[0] == 'menu') {
+
+            animationOutMenu();
+
+            setTimeout(() => {
+                delContentMenu()
+            },200)
+           
+            
+        }else if(arrSection[0] == 'contact'){
+            
+            animationOutContact()
+
+            setTimeout(() => {
+                delContentContact();
+            },200)
+
+        }
+        
         setTimeout(() => {
             
             domElementsHome(arrElementsHomeWithoutFloatMenu);
+            animationEntryHome();
+        },202)
 
-        },410)
+        arrSection.pop()
+        arrSection.push('home');
+
     })
 
     
@@ -283,14 +300,26 @@ function changeSection() {
 
 }
 
-function animationEntry() {
+function animationEntryHome() {
     
-     
-    let items = document.querySelectorAll('.itemMenu');
-
 
     anime({
-        targets: items,
+        targets: ['.containerPresentation', '.containerImg'],
+        opacity: [0, 1],
+        filer: blur('12px', '0px'),
+        easing:'easeInQuint',
+        duration: 300,
+
+    })
+
+}
+
+function animationEntryMenu() {
+    
+    let itemsMenu = document.querySelectorAll('.itemMenu');
+
+    anime({
+        targets: itemsMenu,
         scale: [0, 1],
         duration: 500,
         easing: 'easeOutBack',
@@ -300,19 +329,43 @@ function animationEntry() {
 
 }
 
-function animationOut() {
+function animationOutMenu() {
     
-    let items = document.querySelectorAll('.itemMenu');
-
     anime({
-        targets: items,
+        targets: '.containerItemsMenu',
 
-        scale: [1,0],
+        opacity:[1, 0],
         duration: 500,
-        easing:'easeOutExpo',
-        
+        easing: 'easeOutBack',        
 
     });
+}
+
+function animationEntryContact() {  
+     
+    let itemsContact = document.querySelectorAll('.itemsContact');
+
+    anime({
+        targets: itemsContact,
+        scale: [0, 1],
+        duration: 500,
+        easing: 'easeOutBack',
+        delay: anime.stagger(100, {from: 'first'}),
+
+    });
+
+}
+
+function animationOutContact() {
+    
+    anime({
+        targets: '.containerItemsContact',
+        opacity: [1, 0],
+        duration: 500,
+        easing: 'easeOutBack',
+
+    });
+
 }
 
 function delContentHome() {
@@ -346,17 +399,17 @@ function delContentMenu() {
 function delContentContact() {
     
     const content = document.querySelector('.content');
-    const containerItemsMenu = document.querySelector('.containerItemsMenu');
+    const containerItemsContact = document.querySelector('.containerItemsContact');
 
 
 
-    content.removeChild(containerItemsMenu);
+    content.removeChild(containerItemsContact);
 
 }
 
 
 domElementsHome(arrElementsHome);
-
+animationEntryHome();
 changeSection();
 
 
