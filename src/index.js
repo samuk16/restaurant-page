@@ -223,6 +223,7 @@ function changeSection() {
             
             createElementsDomMenu(arrElementsMenu);
             animationEntryMenu();
+            hoverItemsMenu();
 
         },250)
 
@@ -365,6 +366,33 @@ function animationOutContact() {
         easing: 'easeOutBack',
 
     });
+
+}
+
+function hoverItemsMenu() {
+    
+    const itemsMenuAll = document.querySelectorAll('.itemMenu');
+    
+    itemsMenuAll.forEach(item => {
+        item.addEventListener('mouseover', () => {
+
+          anime({
+                targets: item,
+                scale: [1, 0.95],
+                easing: 'easeOutElastic',
+            })
+        });
+    
+        item.addEventListener('mouseout', () => {
+            anime({
+                targets: item,
+                scale: 1,
+                easing: 'easeOutElastic',
+
+            })
+        });
+    });
+
 
 }
 
