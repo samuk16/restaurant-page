@@ -5,6 +5,9 @@ import createElementsDom from './domCreation.js';
 import { createElementsDomMenu, arrElementsMenu } from './menu.js';
 import { createElementsDomContact, arrElementsContact } from './contact';
 
+import anime from 'animejs/lib/anime.es.js';
+
+
 function component() {
         
     const element = document.createElement('div');
@@ -130,12 +133,12 @@ const arrElementsHome = [
 
     },
 
-    {
-        elementType: 'div',
-        attributes: {class:'btnMenu'},
-        innerText: 'Menu',
-        appendChild: '.containerPresentation',
-    },
+    // {
+    //     elementType: 'div',
+    //     attributes: {class:'btnMenu'},
+    //     innerText: 'Menu',
+    //     appendChild: '.containerPresentation',
+    // },
 
     
     
@@ -188,12 +191,12 @@ const arrElementsHomeWithoutFloatMenu = [
 
     },
 
-    {
-        elementType: 'div',
-        attributes: {class:'btnMenu'},
-        innerText: 'Menu',
-        appendChild: '.containerPresentation',
-    },
+    // {
+    //     elementType: 'div',
+    //     attributes: {class:'btnMenu'},
+    //     innerText: 'Menu',
+    //     appendChild: '.containerPresentation',
+    // },
 ];
 
 function domElementsHome(arr) {
@@ -203,44 +206,47 @@ function domElementsHome(arr) {
         createElementsDom(elementObject.elementType,elementObject.attributes,null,elementObject.innerText,document.querySelector(elementObject.appendChild));
         
     });
+   
 }   
 
 
-
+const arrSection = ['home'];
 
 function changeSection() {
     
-    
-    const btnMenu = document.querySelector('.btnMenu');
+
     const menu = document.querySelector('.menu');
     const contact = document.querySelector('.contact');
     const home = document.querySelector('.containerNameRestaurant');    
     
-
-    btnMenu.addEventListener('click', () => {
-
-        delContentHome()
-
-        setTimeout(() => {
-            
-            createElementsDomMenu(arrElementsMenu);
-
-
-        },200)
-    })
+   
     menu.addEventListener('click', () => {
 
-        delContentHome();
+        
+
+        arrSection[0] == 'home' ? delContentHome(): delContentContact();
+        // delContentHome();
+
+        arrSection.pop()
+        arrSection.push('menu');
+        
 
         setTimeout(() => {
             
             createElementsDomMenu(arrElementsMenu);
+            animationEntry();
 
+        },250)
 
-        },200)
     })
+
     contact.addEventListener('click', () => {
 
+
+        arrSection[0] == 'home' ? delContentHome(): delContentMenu();
+
+        arrSection.pop()
+        arrSection.push('contact');
 
         setTimeout(() => {
             
@@ -248,15 +254,27 @@ function changeSection() {
 
         },200)
     })
+
     home.addEventListener('click', () => {
 
-        delContentMenu()
+        arrSection[0] == 'menu' ? delContentMenu(): delContentContact();
+
+        arrSection.pop()
+        arrSection.push('menu');
+
+        animationOut();
+        
+        setTimeout(() => {
+            
+            delContentMenu();
+
+        },200)
 
         setTimeout(() => {
             
             domElementsHome(arrElementsHomeWithoutFloatMenu);
 
-        },200)
+        },410)
     })
 
     
@@ -265,16 +283,54 @@ function changeSection() {
 
 }
 
+function animationEntry() {
+    
+     
+    let items = document.querySelectorAll('.itemMenu');
+
+
+    anime({
+        targets: items,
+        scale: [0, 1],
+        duration: 500,
+        easing: 'easeOutBack',
+        delay: anime.stagger(100, {from: 'first'}),
+
+    });
+
+}
+
+function animationOut() {
+    
+    let items = document.querySelectorAll('.itemMenu');
+
+    anime({
+        targets: items,
+
+        scale: [1,0],
+        duration: 500,
+        easing:'easeOutExpo',
+        
+
+    });
+}
+
 function delContentHome() {
     
     const content = document.querySelector('.content');
     const containerPresentation = document.querySelector('.containerPresentation');
     const containerImg = document.querySelector('.containerImg');
 
+    containerPresentation.classList.add('blur-out')
+    containerImg.classList.add('blur-out')
 
-    content.removeChild(containerPresentation);
-    content.removeChild(containerImg);
 
+    setTimeout(() => {
+        content.removeChild(containerPresentation);
+        content.removeChild(containerImg);    
+
+    },150)
+    
 }
 function delContentMenu() {
     
