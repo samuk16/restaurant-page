@@ -39,6 +39,7 @@ body{
     height: 100vh;
     background-image: url(./japFood1.png);
     opacity: 0;
+    background-repeat: no-repeat;
 
 }
 
@@ -450,19 +451,12 @@ p{
 
 
 @media screen and (max-width: 560px){
-    
-    
-
 
     .itemsContact{
 
         width: 350px;
         height: 200px;
     }
-
-
-    
-
 
 }
 @media screen and (max-width: 460px){
@@ -478,6 +472,9 @@ p{
         gap: 10px;
     }
 
+    .containerPresentation{
+        gap: 10px;
+    }
 
 }
 @media screen and (max-width: 1321px){
@@ -489,12 +486,23 @@ p{
 
         margin: 150px 0;
         transition: all .13s ease-in-out;
-
+        padding: 0 0 100px 0;
     }
 
-    .content{
-         
-        height: auto;
+    
+
+    .containerImg{
+
+        background-image: none;
+    }
+
+    .containerPresentation{
+        width: 100vw;
+        padding: 0;
+    }
+    
+    .textPresentation{
+        width: 600px;
     }
 
 }
@@ -508,11 +516,7 @@ p{
         margin: 150px 0;
     }
 
-    .content{
-         
-        height: auto;
-    }
-
+    
 }
 @media screen and (max-width: 678px){
     
@@ -522,11 +526,11 @@ p{
         grid-template-rows: repeat(6, 200px);
 
         margin: 150px 0;
+        padding: 0 0 100px 0;
     }
 
-    .content{
-         
-        height: auto;
+    .textPresentation{
+        width: 300px;
     }
 
 }
