@@ -206,6 +206,15 @@ function changeSection() {
 
             delContentHome()
 
+            setTimeout(() => {
+            
+                createElementsDomMenu(arrElementsMenu);
+                animationEntryMenu();
+                hoverItemsMenu();
+    
+            },250)
+    
+
             
         }else if(arrSection[0] == 'contact'){
             
@@ -214,19 +223,21 @@ function changeSection() {
                 delContentContact();
             },200)
 
+            setTimeout(() => {
+            
+                createElementsDomMenu(arrElementsMenu);
+                animationEntryMenu();
+                hoverItemsMenu();
+    
+            },250)
+    
+
 
         }
         
 
         
-        setTimeout(() => {
-            
-            createElementsDomMenu(arrElementsMenu);
-            animationEntryMenu();
-            hoverItemsMenu();
-
-        },250)
-
+        
         arrSection.pop()
         arrSection.push('menu');
 
@@ -243,20 +254,28 @@ function changeSection() {
                 delContentMenu()
             },200)
 
+            setTimeout(() => {
+            
+                createElementsDomContact(arrElementsContact);
+                animationEntryContact();
+            },200)
+
         }else if(arrSection[0] == 'home'){
       
             delContentHome()
+
+            setTimeout(() => {
+            
+                createElementsDomContact(arrElementsContact);
+                animationEntryContact();
+            },200)
             
         }
         
 
         
         
-        setTimeout(() => {
-            
-            createElementsDomContact(arrElementsContact);
-            animationEntryContact();
-        },200)
+        
 
         arrSection.pop()
         arrSection.push('contact');
@@ -272,6 +291,12 @@ function changeSection() {
             setTimeout(() => {
                 delContentMenu()
             },200)
+
+            setTimeout(() => {
+            
+                domElementsHome(arrElementsHomeWithoutFloatMenu);
+                animationEntryHome();
+            },202)
            
             
         }else if(arrSection[0] == 'contact'){
@@ -282,13 +307,15 @@ function changeSection() {
                 delContentContact();
             },200)
 
+            setTimeout(() => {
+            
+                domElementsHome(arrElementsHomeWithoutFloatMenu);
+                animationEntryHome();
+            },202)
+
         }
         
-        setTimeout(() => {
-            
-            domElementsHome(arrElementsHomeWithoutFloatMenu);
-            animationEntryHome();
-        },202)
+        
 
         arrSection.pop()
         arrSection.push('home');
