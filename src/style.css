@@ -98,6 +98,7 @@ body{
     outline: 2px solid #dbaf57;
 
     padding: 10px;
+    user-select: none;
 
 }
 
@@ -292,11 +293,7 @@ p{
     flex-direction: column;
     justify-content: end;
 
-    /* transition: all .2s ease-in-out; */
-
     cursor: pointer;
-
-    /* opacity: 0; */
 }
 
 .containerNameItem{
@@ -313,6 +310,7 @@ p{
     /* border-radius: 0 0 16px 16px; */
     border-radius: 10px;
     user-select: none;
+    pointer-events: none;
 }
 
 .item1{
@@ -448,4 +446,87 @@ p{
 
     top: 30px;
     font-size: 1.5rem;
+}
+
+
+@media screen and (max-width: 560px){
+    
+    
+
+
+    .itemsContact{
+
+        width: 350px;
+        height: 200px;
+    }
+
+
+    
+
+
+}
+@media screen and (max-width: 460px){
+    
+    .containerNameRestaurant{
+
+        font-size: 1rem;
+    }
+    .containerFloatMenu{
+
+        width: 350px;
+
+        gap: 10px;
+    }
+
+
+}
+@media screen and (max-width: 1321px){
+    
+    .containerItemsMenu{
+
+        grid-template-columns: repeat(2, 400px);
+        grid-template-rows: repeat(3, 300px);
+
+        margin: 150px 0;
+        transition: all .13s ease-in-out;
+
+    }
+
+    .content{
+         
+        height: auto;
+    }
+
+}
+@media screen and (max-width: 896px){
+    
+    .containerItemsMenu{
+
+        grid-template-columns: repeat(2, 300px);
+        grid-template-rows: repeat(3, 200px);
+
+        margin: 150px 0;
+    }
+
+    .content{
+         
+        height: auto;
+    }
+
+}
+@media screen and (max-width: 678px){
+    
+    .containerItemsMenu{
+
+        grid-template-columns: repeat(1, 300px);
+        grid-template-rows: repeat(6, 200px);
+
+        margin: 150px 0;
+    }
+
+    .content{
+         
+        height: auto;
+    }
+
 }
